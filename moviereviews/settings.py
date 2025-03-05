@@ -11,21 +11,21 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+
 import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Directorio base
 BASE_DIR = Path(__file__).resolve().parent.parent
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 MEDIA_URL = '/media/'
-
-
-
+MEDIA_ROOT = BASE_DIR / "media"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ibv)2oz+rpzdn+f*@gr^^j7h36eftvlrnnuaz0*s#e15b3p5ag'
+SECRET_KEY = 'django-insecure-aix9y9wf0z%+5z)t3c+02)(xa7fpvi8pngs4w^mb-hwd%rh2-h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'movie'
+    'movie',
+    'news',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'moviereviews.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates", BASE_DIR / "news/templates", os.path.join(BASE_DIR, "moviereviews/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,6 +72,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "moviereviews/static"),
 ]
 
 WSGI_APPLICATION = 'moviereviews.wsgi.application'
@@ -121,7 +126,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
